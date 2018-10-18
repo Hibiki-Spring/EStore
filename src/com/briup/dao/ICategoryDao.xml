@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+			<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+			"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- com.briup.mappers.StudentMapper是我们定义接口的全限定名字 这样就可以使用接口调用映射的SQL语句了 这个名字一定要和接口对应上 -->
+<mapper namespace="com.briup.dao.ICategoryDao">
+	<resultMap type="categoryDetail" id="cate_detail_mod">
+		<id property="id" column="ids"/>
+		<result property="name" column="names"/>
+	</resultMap>
+	<resultMap type="category" id="cate_mod">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<collection property="detail" resultMap="cate_detail_mod"></collection>
+	</resultMap>
+	<select id="listAllCates" resultMap="cate_mod">
+		select s.id,s.name,d.id ids,d.name names
+		from s_cate s,s_cate_detail d
+		where s.id=d.category_id
+	</select>
+</mapper>

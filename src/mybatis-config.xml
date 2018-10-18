@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties>
+		<property name="drivers" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+		<property name="user" value="jd18es"/>
+		<property name="passwd" value="briup"/>
+	</properties>
+	<typeAliases>
+		<package name="com.briup.bean"/>
+	</typeAliases>
+	<typeHandlers>
+		<package name="com.briup.handler"/>
+	</typeHandlers>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver" value="${drivers}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${user}" />
+				<property name="password" value="${passwd}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+<!-- mapper指定映射文件的位置，路径基于src的下一级表示 -->
+	<mappers>
+		<mapper resource="com/briup/dao/IUserDao.xml"/>
+		<mapper resource="com/briup/dao/ICategoryDao.xml"/>
+		<mapper resource="com/briup/dao/IReportDao.xml"/>
+	</mappers>
+</configuration>
